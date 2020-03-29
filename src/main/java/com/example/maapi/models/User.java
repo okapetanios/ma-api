@@ -1,7 +1,5 @@
 package com.example.maapi.models;
 
-import com.example.maapi.models.bridges.NoteLabel;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,8 +17,11 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Note> notes;
 
-    @OneToMany(mappedBy = "folder")
+    @OneToMany(mappedBy = "user")
     private List<Folder> folders;
+
+    @OneToMany(mappedBy = "user")
+    private List<Label> labels;
 
     public int getId() {
         return id;
@@ -76,5 +77,13 @@ public class User {
 
     public void setFolders(List<Folder> folders) {
         this.folders = folders;
+    }
+
+    public List<Label> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(List<Label> labels) {
+        this.labels = labels;
     }
 }
