@@ -13,6 +13,7 @@ public class Note {
     private int id;
     private String note;
     private String title;
+    private String status = "private";
 
     @ManyToOne
     @JsonIgnore
@@ -47,6 +48,14 @@ public class Note {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Folder getFolder() {

@@ -12,6 +12,7 @@ public class Label {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
+    private String status = "private";
 
     @OneToMany(mappedBy = "labelfolder")
     private List<FolderLabel> folders;
@@ -49,5 +50,13 @@ public class Label {
 
     public void setNotes(List<NoteLabel> notes) {
         this.notes = notes;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
