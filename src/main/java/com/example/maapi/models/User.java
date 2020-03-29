@@ -19,6 +19,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Note> notes;
 
+    @OneToMany(mappedBy = "folder")
+    private List<Folder> folders;
+
     public int getId() {
         return id;
     }
@@ -65,5 +68,13 @@ public class User {
 
     public void setNotes(List<Note> notes) {
         this.notes = notes;
+    }
+
+    public List<Folder> getFolders() {
+        return folders;
+    }
+
+    public void setFolders(List<Folder> folders) {
+        this.folders = folders;
     }
 }
