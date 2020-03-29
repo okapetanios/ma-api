@@ -29,12 +29,12 @@ public class UserController {
     }
 
     @PutMapping("/api/users/{uid}")
-    public int updateCourse(@PathVariable("uid") int userId, @RequestBody User updated){
+    public int updateUser(@PathVariable("uid") int userId, @RequestBody User updated){
         return service.updateUser(userId, updated);
     }
 
     @DeleteMapping("/api/users/{uid}")
-    public int deleteCourse(@PathVariable("uid") int userId){
+    public int deleteUser(@PathVariable("uid") int userId){
         return service.deleteUser(userId);
     }
 }
