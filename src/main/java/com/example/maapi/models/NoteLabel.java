@@ -14,11 +14,11 @@ public class NoteLabel {
 
     @ManyToOne
     @JsonIgnore
-    private Note notelabel;
+    private Note note;
 
     @ManyToOne
     @JsonIgnore
-    private Label labelnote;
+    private Label label;
 
     public int getId() {
         return id;
@@ -28,19 +28,19 @@ public class NoteLabel {
         this.id = id;
     }
 
-    public Note getNotelabel() {
-        return notelabel;
+    public Note getNote() {
+        return note;
     }
 
-    public void setNotelabel(Note notelabel) {
-        this.notelabel = notelabel;
+    public void setNote(Note note) {
+        this.note = note;
     }
 
-    public Label getLabelnote() {
-        return labelnote;
+    public Label getLabel() {
+        return label;
     }
 
-    public void setLabelnote(Label labelnote) {
-        this.labelnote = labelnote;
+    public void setLabel(Label label) {
+        this.label = label;
     }
 }
