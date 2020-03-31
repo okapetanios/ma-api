@@ -1,6 +1,5 @@
 package com.example.maapi.models;
 
-import com.example.maapi.models.bridges.FolderLabel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -21,8 +20,8 @@ public class Folder {
     @OneToMany(mappedBy = "folder")
     private List<Note> notes;
 
-    @OneToMany(mappedBy = "folderlabel")
-    private List<FolderLabel> labels;
+    @OneToMany(mappedBy = "folder")
+    private List<Label> labels;
 
     public int getId() {
         return id;
@@ -48,11 +47,11 @@ public class Folder {
         this.notes = notes;
     }
 
-    public List<FolderLabel> getLabels() {
+    public List<Label> getLabels() {
         return labels;
     }
 
-    public void setLabels(List<FolderLabel> labels) {
+    public void setLabels(List<Label> labels) {
         this.labels = labels;
     }
 

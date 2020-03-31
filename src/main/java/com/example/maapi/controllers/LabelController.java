@@ -33,15 +33,15 @@ public class LabelController {
         return service.createLabelForUser(userId, newLabel);
     }
 
-//    @GetMapping("/api/folders/{fid}/labels")
-//    public List<Label> findLabelsByFolder(@PathVariable("fid") int folderId){
-//        return service.findLabelsByFolder(folderId);
-//    }
-//
-//    @PostMapping("/api/folders/{fid}/labels")
-//    public Label createLabelForFolder(@PathVariable("fid") int folderId, @RequestBody Label newLabel){
-//        return service.createLabelForFolder(folderId, newLabel);
-//    }
+    @GetMapping("/api/folders/{fid}/labels")
+    public List<Label> findLabelsByFolder(@PathVariable("fid") int folderId){
+        return service.findLabelsByFolder(folderId);
+    }
+
+    @PostMapping("/api/folders/{fid}/labels")
+    public Label createLabelForFolder(@PathVariable("fid") int folderId, @RequestBody Label newLabel){
+        return service.createLabelForFolder(folderId, newLabel);
+    }
 
     @PutMapping("/api/labels/{lid}")
     public int updateLabel(@PathVariable("lid") int labelId, @RequestBody Label updated){

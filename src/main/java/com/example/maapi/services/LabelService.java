@@ -38,20 +38,20 @@ public class LabelService {
         return labelRepo.save(label);
     }
 
-//    public List<Label> findLabelsByFolder(int folderId){
-//        return labelRepo.findLabelsByFolder(folderId);
-//    }
-//
-//    public Label createLabelForFolder(int folderId, Label label){
-//        Folder folder = folderRepo.findFolderById(folderId);
-//        label.setFolder(folder);
-//        return labelRepo.save(label);
-//    }
+    public List<Label> findLabelsByFolder(int folderId){
+        return labelRepo.findLabelsByFolder(folderId);
+    }
+
+    public Label createLabelForFolder(int folderId, Label label){
+        Folder folder = folderRepo.findFolderById(folderId);
+        label.setFolder(folder);
+        return labelRepo.save(label);
+    }
 
     public int updateLabel(int labelId, Label updatedLabel){
         Label label = labelRepo.findLabelById(labelId);
         updatedLabel.setUser(label.getUser());
-//        updatedLabel.setFolder(label.getFolder());
+        updatedLabel.setFolder(label.getFolder());
         labelRepo.save(updatedLabel);
         return 1;
     }

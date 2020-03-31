@@ -17,6 +17,6 @@ public interface LabelRepo extends CrudRepository<Label, Integer> {
     @Query("select label from Label label where label.user.id=:uid")
     public List<Label> findLabelsByUser(@Param("uid") int userId);
 
-//    @Query("select label from Label label where label.folder.id=:fid")
-//    public List<Label> findLabelsByFolder(@Param("fid") int folderId);
+    @Query("select label from Label label where label.folder.id=:fid")
+    public List<Label> findLabelsByFolder(@Param("fid") int folderId);
 }

@@ -1,4 +1,4 @@
-package com.example.maapi.models.bridges;
+package com.example.maapi.models;
 
 import com.example.maapi.models.Label;
 import com.example.maapi.models.Note;

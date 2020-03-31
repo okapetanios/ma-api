@@ -1,6 +1,5 @@
 package com.example.maapi.models;
 
-import com.example.maapi.models.bridges.NoteLabel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.List;

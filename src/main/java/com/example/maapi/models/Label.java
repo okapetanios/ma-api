@@ -1,7 +1,5 @@
 package com.example.maapi.models;
 
-import com.example.maapi.models.bridges.FolderLabel;
-import com.example.maapi.models.bridges.NoteLabel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -20,8 +18,9 @@ public class Label {
     @JsonIgnore
     private User user;
 
-    @OneToMany(mappedBy = "labelfolder")
-    private List<FolderLabel> folders;
+    @ManyToOne
+    @JsonIgnore
+    private Folder folder;
 
     @OneToMany(mappedBy = "labelnote")
     private List<NoteLabel> notes;
@@ -42,12 +41,12 @@ public class Label {
         this.title = title;
     }
 
-    public List<FolderLabel> getFolders() {
-        return folders;
+    public Folder getFolder() {
+        return folder;
     }
 
-    public void setFolders(List<FolderLabel> folders) {
-        this.folders = folders;
+    public void setFolder(Folder folder) {
+        this.folder = folder;
     }
 
     public List<NoteLabel> getNotes() {
