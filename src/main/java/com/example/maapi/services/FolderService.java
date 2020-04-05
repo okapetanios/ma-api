@@ -38,11 +38,19 @@ public class FolderService {
         Folder folder = folderRepo.findFolderById(folderId);
         updatedfolder.setUser(folder.getUser());
         folderRepo.save(updatedfolder);
-        return 1;
+        if(updatedfolder.equals(folder)){
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public int deleteFolder(int folderId){
         folderRepo.deleteById(folderId);
-        return 1;
+        if(folderRepo.findFolderById(folderId) == null) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }

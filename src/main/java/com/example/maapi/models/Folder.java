@@ -62,4 +62,18 @@ public class Folder {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public boolean equals(Folder other){
+        boolean result = true;
+        if(this.id == other.id){
+            result = result && true;
+        }
+        if(this.title.equals(other.title)){
+            result = result && true;
+        }
+        if(this.getUser().equals(other.getUser())){
+            result = result && true;
+        }
+        return  result;
+    }
 }
