@@ -15,6 +15,9 @@ public class User {
     private String lname;
     private String role;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Profile profile;
+
     @OneToMany(mappedBy = "user")
     private List<Note> notes;
 
@@ -70,6 +73,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     public List<Note> getNotes() {
