@@ -45,6 +45,7 @@ public class NoteService {
     public Note createNoteForFolder(int folderId, Note note){
         Folder folder = folderRepo.findFolderById(folderId);
         note.setFolder(folder);
+        note.setUser(folder.getUser());
         return noteRepo.save(note);
     }
 
@@ -53,11 +54,19 @@ public class NoteService {
         updatedNote.setUser(note.getUser());
         updatedNote.setFolder(note.getFolder());
         noteRepo.save(updatedNote);
-        return 1;
+        if(updatedNote.equals(note)){
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public int deleteNote(int noteId){
         noteRepo.deleteById(noteId);
-        return 1;
+        if(noteRepo.findNoteById(noteId) == null) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }

@@ -80,4 +80,27 @@ public class Note {
 //    public void setLabels(List<NoteLabel> labels) {
 //        this.labels = labels;
 //    }
+
+    public boolean equals(Note other){
+        boolean result = true;
+        if(this.id == other.id){
+            result = result && true;
+        }
+        if(this.note.equals(other.note)){
+            result = result && true;
+        }
+        if(this.title.equals(other.title)){
+            result = result && true;
+        }
+        if(this.status.equals(other.status)){
+            result = result && true;
+        }
+        if(this.getUser().equals(other.getUser())){
+            result = result && true;
+        }
+        if(this.getFolder().equals(other.getFolder())){
+            result = result && true;
+        }
+        return  result;
+    }
 }
