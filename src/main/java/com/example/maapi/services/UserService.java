@@ -26,11 +26,20 @@ public class UserService {
 
     public int updateUser(int userId, User user){
         userRepo.save(user);
-        return 1;
+        User confirm = userRepo.findUserById(userId);
+        if(user.equals(confirm)){
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public int deleteUser(int userId){
         userRepo.deleteById(userId);
-        return 1;
+        if(userRepo.findUserById(userId) == null) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }

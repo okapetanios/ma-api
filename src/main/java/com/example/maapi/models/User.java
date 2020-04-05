@@ -13,6 +13,7 @@ public class User {
     private String password;
     private String fname;
     private String lname;
+    private String role;
 
     @OneToMany(mappedBy = "user")
     private List<Note> notes;
@@ -63,6 +64,14 @@ public class User {
         this.lname = lname;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public List<Note> getNotes() {
         return notes;
     }
@@ -85,5 +94,28 @@ public class User {
 
     public void setLabels(List<Label> labels) {
         this.labels = labels;
+    }
+
+    public boolean equals(User other){
+        boolean result = true;
+        if(this.id == other.id){
+            result = result && true;
+        }
+        if(this.username.equals(other.username)){
+            result = result && true;
+        }
+        if(this.password.equals(other.password)){
+            result = result && true;
+        }
+        if(this.fname.equals(other.fname)){
+            result = result && true;
+        }
+        if(this.lname.equals(other.lname)){
+            result = result && true;
+        }
+        if(this.role.equals(other.role)){
+            result = result && true;
+        }
+        return  result;
     }
 }
