@@ -72,4 +72,24 @@ public class Label {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public boolean equals(Label other){
+        boolean result = true;
+        if(this.id == other.id){
+            result = result && true;
+        }
+        if(this.title.equals(other.title)){
+            result = result && true;
+        }
+        if(this.status.equals(other.status)){
+            result = result && true;
+        }
+        if(this.getUser().equals(other.getUser())){
+            result = result && true;
+        }
+        if(this.getFolder().equals(other.getFolder())){
+            result = result && true;
+        }
+        return  result;
+    }
 }

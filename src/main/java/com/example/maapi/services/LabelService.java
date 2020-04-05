@@ -45,6 +45,7 @@ public class LabelService {
     public Label createLabelForFolder(int folderId, Label label){
         Folder folder = folderRepo.findFolderById(folderId);
         label.setFolder(folder);
+        label.setUser(folder.getUser());
         return labelRepo.save(label);
     }
 
@@ -53,11 +54,19 @@ public class LabelService {
         updatedLabel.setUser(label.getUser());
         updatedLabel.setFolder(label.getFolder());
         labelRepo.save(updatedLabel);
-        return 1;
+        if(updatedLabel.equals(label)){
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public int deleteLabel(int labelId){
         labelRepo.deleteById(labelId);
-        return 1;
+        if(labelRepo.findLabelById(labelId) == null) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
