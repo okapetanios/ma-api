@@ -22,8 +22,8 @@ public class Label {
     @JsonIgnore
     private Folder folder;
 
-    @OneToMany(mappedBy = "labelnote")
-    private List<NoteLabel> notes;
+//    @OneToMany(mappedBy = "labelnote")
+//    private List<NoteLabel> notes;
 
     public int getId() {
         return id;
@@ -49,13 +49,13 @@ public class Label {
         this.folder = folder;
     }
 
-    public List<NoteLabel> getNotes() {
-        return notes;
-    }
-
-    public void setNotes(List<NoteLabel> notes) {
-        this.notes = notes;
-    }
+//    public List<NoteLabel> getNotes() {
+//        return notes;
+//    }
+//
+//    public void setNotes(List<NoteLabel> notes) {
+//        this.notes = notes;
+//    }
 
     public String getStatus() {
         return status;

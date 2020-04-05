@@ -21,9 +21,9 @@ public class Note {
     @ManyToOne
     @JsonIgnore
     private Folder folder;
-
-    @OneToMany(mappedBy = "notelabel")
-    private List<NoteLabel> labels;
+//
+//    @OneToMany(mappedBy = "notelabel")
+//    private List<NoteLabel> labels;
 
     public int getId() {
         return id;
@@ -73,11 +73,11 @@ public class Note {
         this.folder = folder;
     }
 
-    public List<NoteLabel> getLabels() {
-        return labels;
-    }
-
-    public void setLabels(List<NoteLabel> labels) {
-        this.labels = labels;
-    }
+//    public List<NoteLabel> getLabels() {
+//        return labels;
+//    }
+//
+//    public void setLabels(List<NoteLabel> labels) {
+//        this.labels = labels;
+//    }
 }
