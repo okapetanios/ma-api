@@ -1,5 +1,6 @@
 package com.example.maapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class User {
     private String role;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Profile profile;
 
     @OneToMany(mappedBy = "user")
