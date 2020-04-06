@@ -1,12 +1,10 @@
 package com.example.maapi.controllers;
 
+import com.example.maapi.models.Note;
 import com.example.maapi.models.Profile;
 import com.example.maapi.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +22,15 @@ public class ProfileController {
     @GetMapping("/api/users/{uid}/profiles")
     public Profile findProfileByUser(@PathVariable("uid") int userId){
         return service.findProfileByUser(userId);
+    }
+
+    @PostMapping("/api/users/{uid}/profiles")
+    public Profile createProfileForUser(@PathVariable("uid") int userId, @RequestBody Profile newProfile){
+        return service.createProfileForUser(userId, newProfile);
+    }
+
+    @PutMapping("/api/users/{uid}/profiles")
+    public int updateProfile(@PathVariable("uid") int userId, @RequestBody Profile updatedProfile){
+        return service.updateProfile(userId, updatedProfile);
     }
 }
