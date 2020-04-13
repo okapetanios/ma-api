@@ -5,10 +5,14 @@ import org.springframework.web.bind.annotation.*;
 import com.example.maapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(
+        origins = "http://localhost:3000",
+        allowCredentials = "true"
+)
 public class UserController {
     @Autowired
     UserService service;
@@ -23,8 +27,25 @@ public class UserController {
         return service.findUserById(userId);
     }
 
+    @PostMapping("/login")
+    public User loginUser(@RequestBody User newUser, HttpSession session){
+        session.setAttribute("currentUser", newUser);
+        return newUser;
+    }
+
+    @GetMapping("/currentUser")
+    public User currentUser(HttpSession session){
+        return (User)session.getAttribute("currentUser");
+    }
+
+    @PostMapping("/logout")
+    public void logoutUser(HttpSession session){
+        session.invalidate();
+    }
+
     @PostMapping("/api/users")
-    public User createUser(@RequestBody User newUser){
+    public User createUser(@RequestBody User newUser, HttpSession session){
+        session.setAttribute("currentUser", newUser);
         return service.createUser(newUser);
     }
 
