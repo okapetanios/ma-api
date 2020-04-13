@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(
-        origins = "http://localhost:3000",
+        origins = {"http://localhost:3000", "https://mind-assistant.herokuapp.com/"},
         allowCredentials = "true"
 )
 public class UserController {
@@ -29,8 +29,9 @@ public class UserController {
 
     @PostMapping("/login")
     public User loginUser(@RequestBody User newUser, HttpSession session){
-        session.setAttribute("currentUser", newUser);
-        return newUser;
+        User user = service.findUserByCredentials(newUser.getUsername(), newUser.getPassword());
+        session.setAttribute("currentUser", user);
+        return user;
     }
 
     @GetMapping("/currentUser")
