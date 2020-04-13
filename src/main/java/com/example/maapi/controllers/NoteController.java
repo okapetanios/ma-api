@@ -2,10 +2,12 @@ package com.example.maapi.controllers;
 
 import com.example.maapi.models.Note;
 import com.example.maapi.services.NoteService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -52,4 +54,12 @@ public class NoteController {
     public int deleteNote(@PathVariable("fid") int noteId){
         return service.deleteNote(noteId);
     }
+
+    // SEARCH FOR NOTE
+    @RequestMapping("api/notes/search")
+    public List<Note> searchForNote(@RequestParam Optional<String> note) {
+        return service.searchForNote(note.orElse("_"));
+    }
+
+
 }

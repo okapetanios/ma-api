@@ -69,4 +69,11 @@ public class NoteService {
             return 0;
         }
     }
+
+    // SEARCH IMPLEMENTATION
+    
+    public List<Note> searchForNote(String note){
+        return noteRepo.searchForNote(note);
+    }
+
 }
