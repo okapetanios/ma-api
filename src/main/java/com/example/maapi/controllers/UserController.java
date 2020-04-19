@@ -30,13 +30,18 @@ public class UserController {
     @PostMapping("/login")
     public User loginUser(@RequestBody User newUser, HttpSession session){
         User user = service.findUserByCredentials(newUser.getUsername(), newUser.getPassword());
+        if(user == null){
+           System.out.println("User not found");
+        }
         session.setAttribute("currentUser", user);
         return user;
     }
 
     @GetMapping("/currentUser")
     public User currentUser(HttpSession session){
-        return (User)session.getAttribute("currentUser");
+        User current = (User)session.getAttribute("currentUser");
+        System.out.println(current);
+        return current;
     }
 
     @PostMapping("/logout")
