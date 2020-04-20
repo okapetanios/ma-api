@@ -30,9 +30,6 @@ public class UserController {
     @PostMapping("/login")
     public User loginUser(@RequestBody User newUser, HttpSession session){
         User user = service.findUserByCredentials(newUser.getUsername(), newUser.getPassword());
-        if(user == null){
-           System.out.println("User not found");
-        }
         session.setAttribute("currentUser", user);
         return user;
     }
@@ -40,7 +37,6 @@ public class UserController {
     @GetMapping("/currentUser")
     public User currentUser(HttpSession session){
         User current = (User)session.getAttribute("currentUser");
-        System.out.println(current);
         return current;
     }
 
@@ -56,7 +52,8 @@ public class UserController {
     }
 
     @PutMapping("/api/users/{uid}")
-    public int updateUser(@PathVariable("uid") int userId, @RequestBody User updated){
+    public int updateUser(@PathVariable("uid") int userId, @RequestBody User updated, HttpSession session){
+        session.setAttribute("currentUser", updated);
         return service.updateUser(userId, updated);
     }
 
