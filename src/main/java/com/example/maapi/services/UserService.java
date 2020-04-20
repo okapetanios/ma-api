@@ -20,6 +20,10 @@ public class UserService {
         return userRepo.findUserById(userId);
     }
 
+    public User findUserByCredentials(String username, String password){
+        return userRepo.findUserByCredentials(username,password);
+    }
+
     public User createUser(User user){
         return userRepo.save(user);
     }

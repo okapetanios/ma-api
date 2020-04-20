@@ -10,7 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(
+        origins = {"http://localhost:3000", "https://mind-assistant.herokuapp.com/"},
+        allowCredentials = "true"
+)
 public class NoteController {
     @Autowired
     NoteService service;
