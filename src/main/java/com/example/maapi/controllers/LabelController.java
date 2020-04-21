@@ -1,6 +1,7 @@
 package com.example.maapi.controllers;
 
 import com.example.maapi.models.Label;
+import com.example.maapi.models.Note;
 import com.example.maapi.services.LabelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +22,14 @@ public class LabelController {
         return service.findAllLabels();
     }
 
-    @GetMapping("/api/labels/{uid}")
-    public Label findLabelById(@PathVariable("uid") int labelId){
+    @GetMapping("/api/labels/{lid}")
+    public Label findLabelById(@PathVariable("lid") int labelId){
         return service.findLabelById(labelId);
+    }
+
+    @GetMapping("/api/labels/{lid}/notes")
+    public List<Note> findNotesForLabel(@PathVariable("lid") int labelId){
+        return service.findNotesByLabelId(labelId);
     }
 
     @GetMapping("/api/users/{uid}/labels")
@@ -55,4 +61,7 @@ public class LabelController {
     public int deleteLabel(@PathVariable("lid") int labelId){
         return service.deleteLabel(labelId);
     }
+
+
+
 }

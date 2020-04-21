@@ -1,5 +1,6 @@
 package com.example.maapi.controllers;
 
+import com.example.maapi.models.Label;
 import com.example.maapi.models.Note;
 import com.example.maapi.services.NoteService;
 
@@ -64,5 +65,9 @@ public class NoteController {
         return service.searchForNote(note.orElse("_"));
     }
 
+    @GetMapping("/api/notes/{nid}/labels")
+    public List<Label> findLabelsForNote(@PathVariable("nid") int noteId){
+        return service.findLabelsByNoteId(noteId);
+    }
 
 }

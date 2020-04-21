@@ -2,6 +2,7 @@ package com.example.maapi.services;
 
 import com.example.maapi.models.Folder;
 import com.example.maapi.models.Label;
+import com.example.maapi.models.Note;
 import com.example.maapi.models.User;
 import com.example.maapi.repositories.FolderRepo;
 import com.example.maapi.repositories.LabelRepo;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LabelService {
@@ -26,6 +28,13 @@ public class LabelService {
 
     public Label findLabelById(int labelId){
         return labelRepo.findLabelById(labelId);
+    }
+
+    // CrudRepo interface provides the findById method which returns an Optional<Label>
+    // object that may or may not exist. Optional.get() returns the encapsulated object.
+    public List<Note> findNotesByLabelId(int labelId) {
+      Optional<Label> label = labelRepo.findById(labelId);
+        return label.get().getNotes();    
     }
 
     public List<Label> findLabelsByUser(int userId){

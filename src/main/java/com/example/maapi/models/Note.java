@@ -3,6 +3,7 @@ package com.example.maapi.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "notes")
@@ -21,9 +22,17 @@ public class Note {
     @ManyToOne
     @JsonIgnore
     private Folder folder;
-//
-//    @OneToMany(mappedBy = "notelabel")
-//    private List<NoteLabel> labels;
+
+   @ManyToMany
+   @JsonIgnore
+//    "@JoinTable" and its options are optional to avoid JPA defaults, 
+//         otherwise JPA will choose how to name columns. Only one side of the many to many needs this.
+//              Simply pick the side that makes most sense. Somewhat arbitrary.
+//    @JoinTable(
+//   name = "course_like", 
+//   joinColumns = @JoinColumn(name = "student_id"), 
+//   inverseJoinColumns = @JoinColumn(name = "course_id"))
+   private List<Label> labels;
 
     public int getId() {
         return id;
@@ -73,34 +82,29 @@ public class Note {
         this.folder = folder;
     }
 
-//    public List<NoteLabel> getLabels() {
-//        return labels;
-//    }
-//
-//    public void setLabels(List<NoteLabel> labels) {
-//        this.labels = labels;
-//    }
+   public List<Label> getLabels() {
+       return labels;
+   }
 
-    public boolean equals(Note other){
-        boolean result = true;
-        if(this.id == other.id){
-            result = result && true;
+   public void setLabels(List<Label> labels) {
+       this.labels = labels;
+   }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Note)) {
+            return false;
         }
-        if(this.note.equals(other.note)){
-            result = result && true;
-        }
-        if(this.title.equals(other.title)){
-            result = result && true;
-        }
-        if(this.status.equals(other.status)){
-            result = result && true;
-        }
-        if(this.getUser().equals(other.getUser())){
-            result = result && true;
-        }
-        if(this.getFolder().equals(other.getFolder())){
-            result = result && true;
-        }
-        return  result;
+        Note note = (Note) o;
+        return id == note.id && Objects.equals(note, note.note) && Objects.equals(title, note.title) && Objects.equals(status, note.status) && Objects.equals(user, note.user) && Objects.equals(folder, note.folder) && Objects.equals(labels, note.labels);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, note, title, status, user, folder, labels);
+    }
+   
 }

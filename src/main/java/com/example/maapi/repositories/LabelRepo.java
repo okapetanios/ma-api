@@ -1,6 +1,8 @@
 package com.example.maapi.repositories;
 
 import com.example.maapi.models.Label;
+import com.example.maapi.models.Note;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -19,4 +21,5 @@ public interface LabelRepo extends CrudRepository<Label, Integer> {
 
     @Query("select label from Label label where label.folder.id=:fid")
     public List<Label> findLabelsByFolder(@Param("fid") int folderId);
+
 }

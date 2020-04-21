@@ -1,6 +1,7 @@
 package com.example.maapi.services;
 
 import com.example.maapi.models.Folder;
+import com.example.maapi.models.Label;
 import com.example.maapi.models.Note;
 import com.example.maapi.models.User;
 import com.example.maapi.repositories.FolderRepo;
@@ -75,5 +76,10 @@ public class NoteService {
     public List<Note> searchForNote(String note){
         return noteRepo.searchForNote(note);
     }
+
+	public List<Label> findLabelsByNoteId(int noteId) {
+        Note note = noteRepo.findById(noteId).get();
+		return note.getLabels();
+	}
 
 }
